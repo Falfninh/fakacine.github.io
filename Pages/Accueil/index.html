@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <title>FakaCiné - Accueil</title>
+  <style>
+    #secret-message {
+      display: none;
+      margin-top: 20px;
+      padding: 10px;
+      background: #ffbd59;
+      border: 1px solid #bc893d;
+      border-radius: 5px;
+      font-weight: bold;
+      font-family: sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="#" id="secret-link">
+      <img src="favicon.png" alt="logo" style="cursor: pointer;">
+    </a>
+    <h1>Bienvenue sur FakaCiné</h1>
+    <i>Votre plateforme de streaming préférée pour les films et séries.</i>
+    <nav>
+      <ul>
+        <ol><a href="/films">Films</a></ol>
+        <ol><a href="/series">Séries</a></ol>
+        <ol><a href="/contact">Contact</a></ol>
+      </ul>
+    </nav>
+
+    <div id="secret-message">
+      🎉 Bravo ! Tu as trouvé le secret ! Redirection dans <span id="countdown">10</span> secondes...
+    </div>
+  </header>
+
+  <script>
+    function startCountdown() {
+      const message = document.getElementById('secret-message');
+      const countdown = document.getElementById('countdown');
+      let timeLeft = 10;
+
+      message.style.display = 'block';
+      countdown.textContent = timeLeft;
+
+      const timer = setInterval(() => {
+        timeLeft--;
+        countdown.textContent = timeLeft;
+
+        if (timeLeft <= 0) {
+          clearInterval(timer);
+          window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+        }
+      }, 1000);
+    }
+
+    // On attache le clic après que le DOM est bien chargé
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("secret-link").addEventListener("click", (e) => {
+        e.preventDefault(); // évite le # en URL
+        startCountdown();
+      });
+    });
+  </script>
+
+</body>
+</html>
